@@ -1,41 +1,50 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_VERSION = '20.x'
-    }
-
     tools {
-      nodejs "${NODE_VERSION}"
+        // Automatically install Node.js 20.x if not available
+        nodejs '20.x' // Requires NodeJS plugin and "NodeJS 20" defined in global tool configuration
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/Dimitar-Dechevski/Student-Registry-App.git'
             }
         }
-        stage('Build') {
+
+        stage('Setup Node.js') {
             steps {
-             script {
-                    bat "npm install"
-                }
+                bat '''
+                node --version
+                npm --version
+                '''
             }
         }
-        stage('Start') {
+
+        stage('Install Dependencies') {
             steps {
-                script {
-                    bat "npm start &"
-                }
+                bat "npm install"
             }
         }
-        stage('Test') {
+
+        stage('Run Application') {
             steps {
-             script {
-                    bat "chmod 0777 ./node_modules/.bin/mocha"
-                    bat "npm test"
-                }
+                bat "npm start &"
             }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat "chmod 0777 ./node_modules/.bin/mocha"
+                bat "npm test"
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline execution finished.'
         }
     }
 }
