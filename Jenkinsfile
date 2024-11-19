@@ -14,8 +14,8 @@ pipeline {
         stage('Build') {
             steps {
              script {
-                    bat 'node 20.0.0'
-                    bat 'npm 20.0.0'
+                    sh 'node 20.0.0'
+                    sh 'npm 20.0.0'
                     bat "npm install"
                 }
             }
