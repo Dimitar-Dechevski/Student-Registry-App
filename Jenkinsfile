@@ -22,11 +22,6 @@ pipeline {
             }
         }
 
-        stage('') {
-            steps {
-                
-            }
-        }
     }
 
     post {
