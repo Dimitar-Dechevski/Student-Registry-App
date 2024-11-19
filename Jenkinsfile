@@ -23,7 +23,6 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat "chmod 0777 ./node_modules/.bin/mocha"
                 bat "npm test"
             }
         }
