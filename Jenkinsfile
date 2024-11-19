@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        // Automatically install Node.js 20.x if not available
-        nodejs '20.x' // Requires NodeJS plugin and "NodeJS 20" defined in global tool configuration
-    }
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -41,6 +36,12 @@ pipeline {
             }
         }
     }
+
+    tools {
+        nodejs '20.x'
+    }
+
+    
 
     post {
         always {
