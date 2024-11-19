@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '20.x'
+        NODE_VERSION = '20.0.0'
     }
 
     tools {
