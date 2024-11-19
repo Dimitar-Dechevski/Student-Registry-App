@@ -16,7 +16,8 @@ pipeline {
 
         stage('Run Application') {
             steps {
-                bat "npm start &"
+                bat "npm start"
+                bat "wait-on http://localhost:8088"
             }
         }
 
