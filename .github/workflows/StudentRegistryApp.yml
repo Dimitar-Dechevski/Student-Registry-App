@@ -6,6 +6,8 @@ name: StudentRegistryApp
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -26,5 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm start &
-    - run: chmod 0777 ./node_modules/.bin/mocha
+    - run: chmod +x ./node_modules/.bin/mocha
     - run: npm test
