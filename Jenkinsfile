@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs '20.x'
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
@@ -35,10 +39,6 @@ pipeline {
                 bat "npm test"
             }
         }
-    }
-
-    tools {
-        nodejs '20.x'
     }
 
     
