@@ -1,12 +1,8 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_VERSION = '20.0.0'
-    }
-
     tools {
-      nodejs "${NODE_VERSION}"
+      nodejs 'NODE_VERSION'
     }
 
     stages {
@@ -18,6 +14,8 @@ pipeline {
         stage('Build') {
             steps {
              script {
+                    bat 'node 20.0.0'
+                    bat 'npm 20.0.0'
                     bat "npm install"
                 }
             }
